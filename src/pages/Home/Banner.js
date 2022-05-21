@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div class="carousel w-full mt-32">
+        <div class="carousel w-full mt-40">
             <div id="slide1" class="carousel-item relative w-full">
                 <img alt='' src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2" class="w-full" />
                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
