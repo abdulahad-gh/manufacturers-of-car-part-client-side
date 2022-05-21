@@ -1,7 +1,10 @@
+import Navbar from "./pages/Shared/Navbar";
 
 function App() {
   return (
-    <div>okkk bro</div>
+    <>
+      <Navbar />
+    </>
   );
 }
 
