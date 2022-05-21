@@ -2,13 +2,13 @@ import React from 'react';
 
 const BusinessSummary = () => {
     return (
-        <div className='mt-36 px-10'>
+        <section className='mt-36 px-10 '>
             <div className=' text-center mb-10'>
                 <h2 className='text-2xl'>Business Summary</h2>
                 <p className='text-cyan-500'>Why With us?</p>
             </div>
 
-            <div className='px-5 lg:px-20 pt-20 bg-cyan-500'>
+            <div className='px-5 lg:px-20 pt-20 bg-cyan-500 rounded-sm'>
                 <div class="grid grid-cols-1 lg:grid-cols-3 shadow gap-10 bg-white rounded-lg">
 
                     <div class="stat py-10">
@@ -39,13 +39,14 @@ const BusinessSummary = () => {
                     </div>
 
                 </div>
-            </div>
-            <div className='flex flex-col lg:flex-row justify-center gap-4 bg-cyan-500 py-10 px-20 text-white '>
-                <p className='text-4xl '>Feel free to work with us</p>
-                <button className='btn'>Contact Now</button>
+                <div className='flex flex-col lg:flex-row justify-center gap-4  py-10 px:-4 lg:px-20 text-white '>
+                    <p className='text-4xl '>Feel free to work with us</p>
+                    <button className='btn'>Contact Now</button>
+                </div>
             </div>
 
-        </div>
+
+        </section>
 
 
     );
