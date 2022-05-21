@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
 
 
     return (
         <div class='drawer  drawer-end'>
             <input id='my-drawer-3' type='checkbox' class='drawer-toggle' />
             <div class='drawer-content flex flex-col'>
-                <div class='w-full navbar bg-base-100 fixed top-0 z-50 lg:px-20'>
+                <div class='w-full  navbar bg-base-100 fixed top-0 lg:px-20'>
 
                     <div class='flex-1 px-2 mx-2 text-2xl'>Manufacturers Of Car Part</div>
                     <div class='flex-none lg:hidden'>
@@ -61,6 +61,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
+                {children}
 
             </div>
             <div class='drawer-side'>
