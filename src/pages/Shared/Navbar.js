@@ -1,7 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import { Link, NavLink } from 'react-router-dom';
+import auth from '../../firebase-init';
 
 const Navbar = ({ children }) => {
+    const [user] = useAuthState(auth)
 
 
     return (
@@ -52,9 +56,15 @@ const Navbar = ({ children }) => {
                                 </NavLink>
                             </li>
                             <li>
-                                <button to='/login' className='rounded-lg  btn-outline'>
-                                    LogIn
+                                {user ? <button onClick={() => signOut(auth)} className='rounded-lg  btn-outline'>
+                                    LogOut
                                 </button>
+
+                                    :
+
+                                    <Link to='/login' className='rounded-lg  btn-outline'>
+                                        LogIn
+                                    </Link>}
                             </li>
 
 

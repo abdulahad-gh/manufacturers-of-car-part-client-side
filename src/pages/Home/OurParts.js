@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const OurParts = () => {
     const [parts, setParts] = useState([]);
@@ -28,7 +29,7 @@ const OurParts = () => {
                         <p>Minimum Order:{part.minQuan}</p>
                         <p>Available Quantity:{part.availableQuan}</p>
                         <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Listen</button>
+                            <Link to='/purchase' class="btn btn-primary">Purchase</Link>
                         </div>
                     </div>
                 </div>
