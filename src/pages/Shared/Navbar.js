@@ -10,7 +10,7 @@ const Navbar = ({ children }) => {
             <div class='drawer-content flex flex-col'>
                 <div class='w-full  navbar bg-base-100 fixed z-50 top-0 lg:px-20'>
 
-                    <div class='flex-1 px-2 mx-2 text-2xl'>Manufacturers Of Car Part</div>
+                    <div class='flex-1 lg:px-2 lg:mx-2 text-2xl'>Manufacturers Of Car Part</div>
                     <div class='flex-none lg:hidden'>
                         <label for='my-drawer-3' class='btn btn-square btn-ghost'>
                             <svg
@@ -66,7 +66,7 @@ const Navbar = ({ children }) => {
             </div>
             <div class='drawer-side'>
                 <label for='my-drawer-3' class='drawer-overlay'></label>
-                <ul class='menu p-4 overflow-y-auto w-80 bg-base-100'>
+                <ul class='menu p-4 overflow-y-auto w-70 md:w-80 bg-base-100'>
                     <li>
                         <NavLink to='/' className='rounded-lg'>
                             Home
