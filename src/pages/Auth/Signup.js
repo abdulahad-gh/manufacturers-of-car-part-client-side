@@ -16,8 +16,6 @@ const Signup = () => {
 
     const [signInWithGoogle, , loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
 
-
-
     if (loading || loadingGoogle) {
         return
     }
@@ -26,13 +24,9 @@ const Signup = () => {
         signInError = <p className='text-red-500'>{error?.message || errorGoogle?.message}</p>
     }
 
-
-
-
-
     const onSubmit = async data => {
         const { name, email, password, confirmPassword } = data
-        if (email === confirmPassword) {
+        if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password)
         }
         else {
@@ -41,18 +35,16 @@ const Signup = () => {
 
     };
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='flex justify-center items-center h-screen mt-60 md:mt-5'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-center text-xl">Sign Up</h2>
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form className='mt-3' onSubmit={handleSubmit(onSubmit)}>
 
-                        <label className="label">
-                            <span className="label-text">Name</span>
-                        </label>
 
-                        <input {...register("name", {
+
+                        <input placeholder='Name' {...register("name", {
                             required: {
                                 value: true,
                                 message: 'name is Required'
@@ -71,12 +63,7 @@ const Signup = () => {
                         </label>
 
 
-
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-
-                        <input {...register("email", {
+                        <input placeholder='Email' {...register("email", {
                             required: {
                                 value: true,
                                 message: 'Email is Required'
@@ -95,10 +82,8 @@ const Signup = () => {
                         </label>
 
 
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input {...register("password", {
+
+                        <input placeholder='Password' {...register("password", {
                             required: {
                                 value: true,
                                 message: 'Password is Required'
@@ -119,10 +104,8 @@ const Signup = () => {
 
                         </label>
 
-                        <label className="label">
-                            <span className="label-text">Confirm Password</span>
-                        </label>
-                        <input {...register("confirmPassword", {
+
+                        <input placeholder='Confirm Password' {...register("confirmPassword", {
                             required: {
                                 value: true,
                                 message: 'Password is Required'
@@ -139,11 +122,11 @@ const Signup = () => {
 
 
                         {signInError}
-                        <input type='submit' className='btn btn-active w-full' value='Sign Up' />
+                        <input type='submit' className='btn btn-primary w-full mt-5' value='Sign Up' />
                     </form>
-                    <p className='text-center'><small>already have an account? <Link className='text-primary ' to='/'>LogIn</Link></small></p>
+                    <p className='text-center'><small>already have an account? <Link className='text-primary ' to='/login'>LogIn</Link></small></p>
                     <div className="divider">OR</div>
-                    <button className="btn btn-outline" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
+                    <button className="btn btn-outline btn-primary" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
 
 
                 </div>
