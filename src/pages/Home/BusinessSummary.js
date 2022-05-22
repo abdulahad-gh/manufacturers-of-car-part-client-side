@@ -9,34 +9,41 @@ const BusinessSummary = () => {
             </div>
 
             <div className='px-2 md-px-5 lg:px-20 pt-20 bg-cyan-500 rounded-sm'>
-                <div class="grid grid-cols-1 lg:grid-cols-3 shadow gap-10 bg-white rounded-lg">
+                <div class="grid px-5 py-10 grid-cols-1 lg:grid-cols-3 shadow gap-10 bg-white rounded-lg">
 
-                    <div class="stat  py-10">
+                    <div class="  flex flex-col items-center lg:flex-row md:justify-between">
+
+                        <div >
+                            <div class="stat-title">Client Satisfy</div>
+                            <div class="stat-value text-primary">200+</div>
+                        </div>
                         <div class="stat-figure ">
                             <i class="fa-solid fa-handshake text-6xl text-primary"></i>
                         </div>
-                        <div class="stat-title">Client Satisfy</div>
-                        <div class="stat-value text-primary">200+</div>
                     </div>
+                    <div class="  flex flex-col items-center lg:flex-row md:justify-between">
 
-                    <div class="stat">
-                        <div class="stat-figure">
+                        <div >
+                            <div class="stat-title">Our Parts</div>
+                            <div class="stat-value text-secondary">40+</div>
+                        </div>
+                        <div class="stat-figure ">
                             <i class="fa-solid fa-trailer text-6xl text-secondary"></i>
                         </div>
-                        <div class="stat-title">Our Parts</div>
-                        <div class="stat-value text-secondary">40+</div>
                     </div>
+                    <div class="  flex flex-col items-center lg:flex-row md:justify-between">
 
-                    <div class="stat">
-                        <div class="stat-figure">
-                            <div class="w-30 rounded-full">
-                                <i class="fa-solid fa-sack-dollar text-6xl text-black"></i>
-                            </div>
+                        <div >
+                            <div class="stat-title">Monthly income</div>
+                            <div class="stat-value text-black">$10000+</div>
                         </div>
-                        <div class="stat-title">Monthly income</div>
-
-                        <div class="stat-value ">$10000+</div>
+                        <div class="stat-figure ">
+                            <i class="fa-solid fa-sack-dollar text-6xl text-black"></i>
+                        </div>
                     </div>
+
+
+
 
                 </div>
                 <div className='flex flex-col lg:flex-row justify-center gap-4  py-10 px:-4 lg:px-20 text-white '>
