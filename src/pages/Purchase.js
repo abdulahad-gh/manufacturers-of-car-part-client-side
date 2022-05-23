@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 const Purchase = () => {
     const { id } = useParams()
     const [part, setPart] = useState({});
-    const { part: partName, img, desc, price, minQuan, availableQuan } = part;
+    const { _id, part: partName, img, desc, price, minQuan, availableQuan } = part;
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
@@ -20,17 +20,17 @@ const Purchase = () => {
     }, [id])
 
 
-
     const handleQuantity = e => {
-        const userQuantity = parseInt(e.target.value)
+        const userInputQuantity = parseInt(e.target.value)
 
-        if (minQuan > userQuantity) {
+        if (minQuan > userInputQuantity) {
             setQuantityError(`minimum quantity ${minQuan}`)
         }
-        else if (availableQuan < userQuantity) {
+        else if (availableQuan < userInputQuantity) {
             setQuantityError(`maximum quantity ${availableQuan}`)
 
         }
+
         else {
             setQuantityError('')
         }
@@ -38,7 +38,30 @@ const Purchase = () => {
     }
 
     const onSubmit = async data => {
-        const { name, email, password, confirmPassword } = data
+        const { name, email, phone, } = data
+        const orderItemInfo = {
+            partId: _id,
+            partName,
+            img,
+            price,
+            email,
+            name,
+            phone
+        }
+
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(orderItemInfo)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+
 
 
     };
