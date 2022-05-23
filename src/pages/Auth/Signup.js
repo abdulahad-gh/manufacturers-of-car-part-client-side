@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase-init';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
+        user
         ,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    const [signInWithGoogle, , loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    const [token] = useToken(user || userGoogle)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (token) {
+            navigate('/')
+        }
+
+    }, [token, navigate])
 
     if (loading || loadingGoogle) {
         return
