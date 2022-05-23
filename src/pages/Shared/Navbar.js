@@ -40,11 +40,11 @@ const Navbar = ({ children }) => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li>
+                            {user && <li>
                                 <NavLink to='/dashboard' className='rounded-lg'>
                                     Dashboard
                                 </NavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <NavLink to='/blogs' className='rounded-lg'>
                                     Blogs
