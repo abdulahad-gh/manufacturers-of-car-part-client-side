@@ -1,15 +1,11 @@
 import React from 'react';
 
-const MyProfile = () => {
+const MyOrders = () => {
     return (
         <div className='mt-40'>
-
-            <h2>my Profile</h2>
-
-
-
+            <h1>this is order page</h1>
         </div>
     );
 };
 
-export default MyProfile;
+export default MyOrders;

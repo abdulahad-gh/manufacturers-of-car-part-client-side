@@ -1,15 +1,12 @@
 import React from 'react';
 
-const MyProfile = () => {
+const AddReview = () => {
     return (
         <div className='mt-40'>
-
-            <h2>my Profile</h2>
-
-
+            <h2>Add Review</h2>
 
         </div>
     );
 };
 
-export default MyProfile;
+export default AddReview;
