@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import auth from '../../firebase-init';
 
 const Navbar = ({ children }) => {
     const [user] = useAuthState(auth)
+    const { pathname } = useLocation()
 
 
     return (
@@ -13,8 +14,14 @@ const Navbar = ({ children }) => {
             <input id='my-drawer-3' type='checkbox' class='drawer-toggle' />
             <div class='drawer-content flex flex-col'>
                 <div class='w-full  navbar bg-base-100 fixed z-50 top-0 lg:px-20'>
+                    {pathname.includes('/dashboard') && <div >
+                        <label tabIndex="1" for="dashboard-sidebar" className="btn p-1 btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        </label>
+                    </div>}
 
-                    <div class='flex-1 lg:px-2 lg:mx-2 text-2xl'>Manufacturers Of Car Part</div>
+
+                    <div class='flex-1 lg:px-2 lg:mx-2 text-xl md:text-2xl'>Manufacturers Of Car Part</div>
                     <div class='flex-none lg:hidden'>
                         <label for='my-drawer-3' class='btn btn-square btn-ghost'>
                             <svg
@@ -106,6 +113,7 @@ const Navbar = ({ children }) => {
 
                 </ul>
             </div>
+
         </div>
     );
 };

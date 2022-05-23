@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase-init';
@@ -17,6 +17,9 @@ const Signup = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    //updateName. When user signUp email and password
+    const [updateProfile, updating, errorUpdating] = useUpdateProfile(auth);
+
     const [token] = useToken(user || userGoogle)
     const navigate = useNavigate()
 
@@ -27,18 +30,22 @@ const Signup = () => {
 
     }, [token, navigate])
 
-    if (loading || loadingGoogle) {
+    if (loading || loadingGoogle || updating) {
         return
     }
     let signInError;
     if (error || errorGoogle) {
         signInError = <p className='text-red-500'>{error?.message || errorGoogle?.message}</p>
     }
-
+    if (errorUpdating) {
+        console.log(errorUpdating);
+    }
     const onSubmit = async data => {
         const { name, email, password, confirmPassword } = data
         if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password)
+            await updateProfile({ displayName: name })
+
         }
         else {
             alert("your password don't matched")

@@ -1,14 +1,17 @@
 import { getSuggestedQuery } from '@testing-library/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import auth from '../firebase-init';
 
 const Purchase = () => {
+    const [user, loading] = useAuthState(auth)
     const { id } = useParams()
     const [part, setPart] = useState({});
     const { _id, part: partName, img, desc, price, minQuan, availableQuan } = part;
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
         (async () => {
@@ -44,8 +47,8 @@ const Purchase = () => {
             partName,
             img,
             price,
-            email,
-            name,
+            email: user.email,
+            name: user.displayName,
             phone
         }
 
@@ -60,6 +63,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                reset()
             });
 
 
@@ -106,45 +110,9 @@ const Purchase = () => {
                         }
 
                     </label>
-                    <input placeholder='Name' {...register("name", {
-                        required: {
-                            value: true,
-                            message: 'name is Required'
-                        },
-                        minLength: {
-                            value: 5,
-                            message: 'name at least 5 character or longer'
-                        }
-                    })} type="text" className="input input-bordered w-full max-w-xs" />
+                    <input disabled value={user.displayName} readOnly type="text" className="input input-bordered w-full max-w-xs" />
 
-                    <label className="label">
-                        {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>
-                        }
-                        {errors.name?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.name.message}</span>
-                        }
-                    </label>
-
-
-                    <input placeholder='Email' {...register("email", {
-                        required: {
-                            value: true,
-                            message: 'Email is Required'
-                        },
-                        pattern: {
-                            value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                            message: 'Provide a Valid Email'
-                        }
-                    })} type="email" className="input input-bordered w-full max-w-xs" />
-
-                    <label className="label">
-                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>
-                        }
-                        {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>
-                        }
-                    </label>
-
-
-
+                    <input disabled value={user.email} readOnly type="email" className="input my-4 input-bordered w-full max-w-xs" />
                     <input placeholder='Phone Number' {...register("phone", {
                         required: {
                             value: true,
