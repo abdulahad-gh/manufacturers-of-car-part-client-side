@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../firebase-init';
 
 const Purchase = () => {
@@ -62,7 +63,12 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.success) {
+                    toast.success('successfully added orders list')
+                }
+                else {
+                    toast.error('already exists order')
+                }
                 reset()
             });
 

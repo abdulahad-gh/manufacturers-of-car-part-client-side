@@ -6,9 +6,14 @@ import AddReview from "./pages/Dashboard/AddReview";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyOrders from "./pages/Dashboard/MyOrders";
 import MyProfile from "./pages/Dashboard/MyProfile";
+import Payment from "./pages/Dashboard/Payment";
 import Home from "./pages/Home/Home";
 import Purchase from "./pages/Purchase";
 import Navbar from "./pages/Shared/Navbar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function App() {
   return (
@@ -19,6 +24,7 @@ function App() {
           <Route path="dashboard" element={<RequireAuth>< Dashboard /> </RequireAuth>}>
             <Route index element={<MyProfile />}></Route>
             <Route path="myOrders" element={<MyOrders />}></Route>
+            <Route path="payment/:orderId" element={<Payment />}></Route>
             <Route path="addReview" element={<AddReview />}></Route>
           </Route>
           <Route path="purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
@@ -26,6 +32,7 @@ function App() {
           <Route path="login" element={<Login />} />
         </Routes>
       </Navbar>
+      <ToastContainer />
 
 
 
