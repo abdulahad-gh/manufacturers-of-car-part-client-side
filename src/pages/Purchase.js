@@ -116,7 +116,7 @@ const Purchase = () => {
                         }
 
                     </label>
-                    <input disabled value={user.displayName} readOnly type="text" className="input input-bordered w-full max-w-xs" />
+                    <input placeholder='Enter your Name' disabled={user.displayName} value={user.displayName} readOnly={user.displayName} type="text" className="input input-bordered w-full max-w-xs" />
 
                     <input disabled value={user.email} readOnly type="email" className="input my-4 input-bordered w-full max-w-xs" />
                     <input placeholder='Phone Number' {...register("phone", {

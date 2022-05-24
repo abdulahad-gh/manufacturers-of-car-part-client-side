@@ -16,6 +16,10 @@ const MyOrders = () => {
     })).then(res => res.json()))
 
 
+    if (loading || isLoading) {
+        return <p>loading....</p>
+    }
+
     const handleDelete = (id, name) => {
 
 
@@ -57,9 +61,7 @@ const MyOrders = () => {
     //     }
     // }, [user])
 
-    if (loading) {
-        return <p>loading....</p>
-    }
+
 
 
     // if (loading) {
