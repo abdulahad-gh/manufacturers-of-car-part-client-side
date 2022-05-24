@@ -12,6 +12,8 @@ import Purchase from "./pages/Purchase";
 import Navbar from "./pages/Shared/Navbar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MakeAdmin from "./pages/Dashboard/Admin/MakeAdmin";
+import RequireAdmin from "./pages/Auth/RequireAdmin";
 
 
 
@@ -26,6 +28,7 @@ function App() {
             <Route path="myOrders" element={<MyOrders />}></Route>
             <Route path="payment/:orderId" element={<Payment />}></Route>
             <Route path="addReview" element={<AddReview />}></Route>
+            <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
           </Route>
           <Route path="purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
           <Route path="signup" element={<Signup />} />
