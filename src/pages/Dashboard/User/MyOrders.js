@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import auth from '../../firebase-init';
+import auth from '../../../firebase-init';
 
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth)
