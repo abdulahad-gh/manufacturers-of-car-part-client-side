@@ -8,9 +8,6 @@ import useAdmin from '../../Hooks/useAdmin';
 
 
 const Dashboard = () => {
-    // useEffect(async()=>{
-    //     const admin = 
-    // },[])
     const [user] = useAuthState(auth)
     const [admin] = useAdmin(user)
     console.log(admin);
