@@ -63,8 +63,10 @@ const MyProfile = () => {
     };
     return (
         <div className='mt-14 lg:mt-20'>
+            <h1 className=' text-2xl lg:text-2xl'>My Profile</h1>
 
-            <div className='flex justify-center lg:justify-start px-5'>
+
+            <div className='flex justify-center lg:justify-start px-5 mt-5'>
                 <form onSubmit={handleUserProfile}>
                     <p><strong>Note:</strong> hey {user?.displayName} you can't change name and email.</p>
 

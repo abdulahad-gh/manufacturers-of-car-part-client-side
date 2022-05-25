@@ -32,7 +32,7 @@ const OurParts = () => {
                     </div>
                 </div>
 
-                )}
+                ).reverse()}
             </div>
         </section>
     );
