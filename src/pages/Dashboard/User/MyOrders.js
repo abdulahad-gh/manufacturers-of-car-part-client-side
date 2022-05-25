@@ -34,39 +34,8 @@ const MyOrders = () => {
                 refetch()
                 toast.success(`successfully order  ${name} is deleted`)
             })
-
-
-
-
-
     }
 
-
-
-
-
-
-    // useEffect(() => {
-
-    //     if (user) {
-    //         fetch(`http://localhost:5000/orders?email=${user.email}`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    //             }
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => setOrders(data))
-
-    //     }
-    // }, [user])
-
-
-
-
-    // if (loading) {
-    //     return
-    // }
     return (
         <div className='mt-14 lg:mt-20'>
             <h1 className='text-center text-2xl lg:text-2xl'>My Orders</h1>
