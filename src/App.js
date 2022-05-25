@@ -19,6 +19,7 @@ import Blogs from "./pages/Blogs";
 import RequireUser from "./pages/Auth/RequireUser";
 import Portfolio from "./pages/Portfolio";
 import PageNotFound from "./pages/PageNotFound";
+import ManageAllOrders from "./pages/Dashboard/Admin/ManageAllOrders";
 
 
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="myOrders" element={<RequireUser><MyOrders /></RequireUser>}></Route>
             <Route path="payment/:orderId" element={<Payment />}></Route>
             <Route path="addReview" element={<RequireUser><AddReview /></RequireUser>}></Route>
+            <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
             <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
             <Route path="addProduct" element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
           </Route>

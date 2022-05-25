@@ -13,6 +13,7 @@ const Purchase = () => {
     const [part, setPart] = useState({});
     const { _id, part: partName, img, desc, price, minQuan, availableQuan } = part;
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const [quantity, setQuantity] = useState('');
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
         (async () => {
@@ -36,23 +37,24 @@ const Purchase = () => {
         }
 
         else {
+            setQuantity(userInputQuantity)
             setQuantityError('')
         }
 
     }
-
+    console.log(quantity);
     const onSubmit = async data => {
         const { name, email, phone, } = data
         const orderItemInfo = {
             partId: _id,
             partName,
             img,
-            price,
+            price: price * quantity,
             email: user.email,
             name: user.displayName,
             phone
         }
-
+        console.log(orderItemInfo);
         fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {

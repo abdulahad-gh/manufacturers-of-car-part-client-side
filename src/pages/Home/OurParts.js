@@ -32,7 +32,7 @@ const OurParts = () => {
                     </div>
                 </div>
 
-                ).reverse().slice(0, 5)}
+                ).reverse().slice(0, 4)}
             </div>
         </section>
     );
