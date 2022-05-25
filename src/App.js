@@ -18,6 +18,7 @@ import AddProduct from "./pages/Dashboard/Admin/AddProduct";
 import Blogs from "./pages/Blogs";
 import RequireUser from "./pages/Auth/RequireUser";
 import Portfolio from "./pages/Portfolio";
+import PageNotFound from "./pages/PageNotFound";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="myPortfolio" element={<Portfolio />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Navbar>
       <ToastContainer />
