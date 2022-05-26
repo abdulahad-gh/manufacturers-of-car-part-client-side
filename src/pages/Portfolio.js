@@ -6,13 +6,13 @@ const Portfolio = () => {
 
             <section>
                 <div className='flex flex-col md:flex-row justify-evenly items-center'>
-                    <div>
+                    <div className='px-4'>
                         <div>
                             <div className='flex'>
                                 <h1 className='text-4xl'>Abdul Ahad</h1>
                                 <div class="avatar online">
                                     <div class="w-10 h-10 rounded-full">
-                                        <img src="https://i.ibb.co/VHdGvxb/abdul-Ahad.png" />
+                                        <img src="https://i.ibb.co/VHdGvxb/abdul-Ahad.png" alt='profileImg' />
                                     </div>
                                 </div>
 

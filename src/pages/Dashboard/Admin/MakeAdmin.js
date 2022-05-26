@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 
 const MakeAdmin = () => {
-    const { data: users, refetch } = useQuery('findAllUser', () => fetch('https://stormy-castle-37919.herokuapp.com/users', {
+    const { data: users, refetch } = useQuery('findAllUser', () => fetch('http://localhost:5000/users', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -11,7 +11,7 @@ const MakeAdmin = () => {
 
 
     const makeAdmin = (email) => {
-        fetch(`https://stormy-castle-37919.herokuapp.com/user/admin/${email}`, {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -53,7 +53,7 @@ const MakeAdmin = () => {
                                     <th>{i + 1}</th>
                                     <td>{user.email}</td>
                                     <td>{user.admin ? 'Admin' : 'User'}</td>
-                                    <td>{user.admin ? <span>Already Admin</span> : <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
+                                    <td>{user.admin ? <i class="fa-solid fa-circle-check"></i> : <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
                                 </tr>)
                             }
 

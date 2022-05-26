@@ -50,7 +50,7 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
     };
     return (
-        <div className='flex justify-center items-center h-screen mt-60 md:mt-0'>
+        <div className='flex justify-center items-center h-screen mt-10'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-center text-xl">LogIn</h2>
@@ -95,7 +95,7 @@ const Login = () => {
                         </label>
 
                         {signInError}
-                        <p>forget password? <span>Reset</span></p>
+                        <p><small>forget password? <span>Reset</span></small> </p>
                         <input type='submit' className='btn btn-primary w-full' value='LogIn' />
                     </form>
                     <p className='text-center'><small>No Account? <Link className='text-primary' to='/signup'>Create new account</Link></small></p>

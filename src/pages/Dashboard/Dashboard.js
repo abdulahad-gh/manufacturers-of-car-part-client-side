@@ -17,22 +17,22 @@ const Dashboard = () => {
 
 
             </div>
-            <div className="drawer-side mt-14 lg:mt-20">
+            <div className="drawer-side mt-20 lg:mt-20">
                 <label for="dashboard-sidebar" className="drawer-overlay"></label>
-                <ul className="menu lg:p-4  text-sm overflow-y-auto w-40 lg:w-53  bg-base-100 text-base-content">
+                <ul className="menu lg:p-4 bg-gray-600 text-white text-sm overflow-y-auto w-40 lg:w-53 ">
                     {/* <!-- Sidebar content here --> */}
-                    <li><Link to='/dashboard'>My Profile </Link></li>
+                    <li><Link to='/dashboard'><i class="fa-solid fa-address-card"></i> My Profile </Link></li>
                     {!admin ? <>
-                        <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
-                        <li><Link to='/dashboard/addReview'>Add A Review</Link></li>
+                        <li><Link to='/dashboard/myOrders'><i class="fa-solid fa-cart-shopping"></i>My Orders</Link></li>
+                        <li><Link to='/dashboard/addReview'><i class="fa-solid fa-star"></i>Add A Review</Link></li>
                     </>
 
                         :
                         <>
-                            <li><Link to='/dashboard/manageAllOrders'>Manage All Orders</Link></li>
-                            <li><Link to='/dashboard/addProduct'>Add A Product</Link></li>
-                            <li><Link to='/dashboard/makeAdmin'>Make Admin</Link></li>
-                            <li><Link to='/dashboard/manageProducts'>Manage Products</Link></li>
+                            <li><Link to='/dashboard/manageAllOrders'><i class="fa-solid fa-list-check"></i> Manage All Orders</Link></li>
+                            <li><Link to='/dashboard/addProduct'><i class="fa-solid fa-circle-plus"></i>Add A Product</Link></li>
+                            <li><Link to='/dashboard/makeAdmin'><i class="fa-brands fa-mandalorian"></i>Make Admin</Link></li>
+                            <li><Link to='/dashboard/manageProducts'><i class="fa-solid fa-bars-progress"></i>Manage Products</Link></li>
                         </>}
 
 
