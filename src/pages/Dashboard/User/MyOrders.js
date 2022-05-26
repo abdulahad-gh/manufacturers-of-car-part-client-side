@@ -75,17 +75,17 @@ const MyOrders = () => {
                                 </td>
                                 {(order.price && !order.paid) && <td>
 
-                                    <label for="delete-doctor" className="btn  btn-xs btn-error">Delete</label>
+                                    <label for="delete-order" className="btn  btn-xs btn-error">Delete</label>
 
-                                    <input type="checkbox" id="delete-doctor" className="modal-toggle" />
+                                    <input type="checkbox" id="delete-order" className="modal-toggle" />
                                     <div className="modal modal-bottom sm:modal-middle">
                                         <div className="modal-box">
                                             <h3 className="font-bold text-lg">are you sure deleted <span className='text-red-500 font-bold'>
                                                 {order.partName}</span> order?</h3>
                                             <p className="py-4">remember! if you delete. after you again add It </p>
                                             <div className="modal-action">
-                                                <label onClick={() => handleDelete(order._id, order.partName)} for="delete-doctor" className="btn btn-xs btn-error">Delete</label>
-                                                <label for="delete-doctor" className="btn btn-xs btn-info">Cancel</label>
+                                                <label onClick={() => handleDelete(order._id, order.partName)} for="delete-order" className="btn btn-xs btn-error">Delete</label>
+                                                <label for="delete-order" className="btn btn-xs btn-info">Cancel</label>
                                             </div>
                                         </div>
                                     </div>

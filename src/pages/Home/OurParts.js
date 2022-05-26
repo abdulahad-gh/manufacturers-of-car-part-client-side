@@ -6,7 +6,11 @@ const OurParts = () => {
     const [parts, setParts] = useState([]);
     useEffect(() => {
         (async () => {
-            const parts = await axios.get('http://localhost:5000/parts')
+            const parts = await axios.get('http://localhost:5000/parts', {
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             setParts(parts.data)
         })()
 
