@@ -1,4 +1,3 @@
-import { getSuggestedQuery } from '@testing-library/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -8,7 +7,7 @@ import { toast } from 'react-toastify';
 import auth from '../firebase-init';
 
 const Purchase = () => {
-    const [user, loading] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const { id } = useParams()
     const [part, setPart] = useState({});
     const { _id, part: partName, img, desc, price, minQuan, availableQuan } = part;
@@ -17,7 +16,7 @@ const Purchase = () => {
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
         (async () => {
-            const part = await axios.get(`http://localhost:5000/part/${id}`)
+            const part = await axios.get(`https://stormy-castle-37919.herokuapp.com/part/${id}`)
             setPart(part.data)
         })()
 
@@ -42,20 +41,18 @@ const Purchase = () => {
         }
 
     }
-    console.log(quantity);
     const onSubmit = async data => {
-        const { name, email, phone, } = data
+        const { name, phone, } = data
         const orderItemInfo = {
             partId: _id,
             partName,
             img,
             price: price * quantity,
             email: user.email,
-            name: user.displayName,
+            name: user.displayName || name,
             phone
         }
-        console.log(orderItemInfo);
-        fetch('http://localhost:5000/order', {
+        fetch('https://stormy-castle-37919.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

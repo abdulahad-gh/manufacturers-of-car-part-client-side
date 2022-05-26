@@ -98,7 +98,7 @@ const Login = () => {
                         <p>forget password? <span>Reset</span></p>
                         <input type='submit' className='btn btn-primary w-full' value='LogIn' />
                     </form>
-                    <p className='text-center'><small>New to Doctors Portal? <Link className='text-primary' to='/signup'>Create new account</Link></small></p>
+                    <p className='text-center'><small>No Account? <Link className='text-primary' to='/signup'>Create new account</Link></small></p>
                     <div className="divider">OR</div>
                     <button className="btn btn-outline btn-primary" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
 

@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
 
 const CheckoutForm = ({ item }) => {
     const { _id, partName, price, email, name, partId } = item;
@@ -11,11 +11,9 @@ const CheckoutForm = ({ item }) => {
     const [clientSecret, setClientSecret] = useState('')
     const [success, setSuccess] = useState('')
     const [proccessing, setProccessing] = useState(false)
-
-
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://stormy-castle-37919.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -25,14 +23,10 @@ const CheckoutForm = ({ item }) => {
             body: JSON.stringify({ price })
         })
             .then(res => {
-                console.log(res);
                 return res.json()
             })
             .then(data => {
-                // if (data?.clientSecret) {
-                console.log(data);
                 setClientSecret(data.clientSecret)
-                // }
             })
     }, [price])
 
@@ -80,7 +74,6 @@ const CheckoutForm = ({ item }) => {
             setCardError(intentError?.message)
             setSuccess('')
             setProccessing(false)
-            console.log(intentError);
 
         }
         else {
@@ -96,11 +89,9 @@ const CheckoutForm = ({ item }) => {
                 partName,
                 name,
                 email
-
             }
-            console.log(payment)
 
-            fetch(`http://localhost:5000/order/${_id}`, {
+            fetch(`https://stormy-castle-37919.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -110,17 +101,16 @@ const CheckoutForm = ({ item }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                 })
 
 
 
 
 
-            // setTimeout(() => {
-            //     navigate('/dashboard')
-            // }, 5000)
-            console.log(paymentIntent);
+            setTimeout(() => {
+                navigate('/myOrders')
+            }, 3000)
+
 
 
 

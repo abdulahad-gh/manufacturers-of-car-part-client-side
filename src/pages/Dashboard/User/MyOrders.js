@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ import auth from '../../../firebase-init';
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth)
 
-    const { data: orders, isLoading, refetch } = useQuery(['orderFind', user.email], () => (fetch(`http://localhost:5000/orders?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery(['orderFind', user.email], () => (fetch(`https://stormy-castle-37919.herokuapp.com/orders?email=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,7 +22,7 @@ const MyOrders = () => {
     const handleDelete = (id, name) => {
 
 
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://stormy-castle-37919.herokuapp.com/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -37,8 +36,8 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='mt-14 lg:mt-20'>
-            <h1 className='text-center text-2xl lg:text-2xl'>My Orders</h1>
+        <div className='mt-10 px-2 lg:px-5 bg-gray-200 rounded-md p-4'>
+            <h1 className='text-center text-2xl'>My Orders</h1>
 
 
             <div className="overflow-x-auto mt-5">
@@ -73,7 +72,7 @@ const MyOrders = () => {
                                         <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
                                     </div>}
                                 </td>
-                                {(order.price && !order.paid) && <td>
+                                {(order.price && !order.paid) ? <td>
 
                                     <label for="delete-order" className="btn  btn-xs btn-error">Delete</label>
 
@@ -89,7 +88,10 @@ const MyOrders = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </td>}
+                                </td> :
+                                    <td>
+                                    </td>
+                                }
 
 
                             </tr>

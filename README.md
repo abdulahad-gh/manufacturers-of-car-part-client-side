@@ -1,10 +1,24 @@
-# Getting Started with Create React App
+# Manufacturers Of Car Part
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Live Site Link=> [Manufacturers Of Car Part](https://manufacturers-of-car-part.firebaseapp.com/).
+ 
+Server Site Link=> [Manufacturers With heroku](https://stormy-castle-37919.herokuapp.com/).
 
-In the project directory, you can run:
+## features and functionality for User
+
+* user can order,with card payment.
+* update profile.
+* add review
+* when order and payment success, notify user with email.
+* also user can delete order.
+
+## features and functionality for Admin
+* Add product and remove product
+* Make Admin
+* Update Profile
+* Manage All orders
+* Manage Products
 
 ### `npm start`
 

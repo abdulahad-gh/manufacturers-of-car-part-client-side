@@ -4,12 +4,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase-init';
+import Spinner from '../Shared/Spinner';
 
 const MyProfile = () => {
 
     const [user, loading] = useAuthState(auth)
     const [countries, setCountries] = useState([]);
     const [onChange, setOnChange] = useState(false)
+    const [spinner, setSpinner] = useState(false);
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,12 +25,13 @@ const MyProfile = () => {
 
 
 
-    if (loading) {
-        return
+    if (loading || spinner) {
+        return <Spinner />
     }
 
 
     const handleUserProfile = e => {
+        setSpinner(true)
         e.preventDefault()
 
         const userProfileInfo = {
@@ -39,7 +43,7 @@ const MyProfile = () => {
             facebook: e.target.facebook.value,
 
         }
-        fetch(`http://localhost:5000/update-user-info/${user.email}`, {
+        fetch(`https://stormy-castle-37919.herokuapp.com/update-user-info/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,12 +53,13 @@ const MyProfile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
+                    setSpinner(false)
                     toast.success('Your profile update successfully')
 
                     setTimeout(() => {
                         navigate('/')
 
-                    }, 1000)
+                    }, 2000)
                     setOnChange(false)
                 }
 
@@ -62,11 +67,11 @@ const MyProfile = () => {
 
     };
     return (
-        <div className='mt-14 lg:mt-20'>
-            <h1 className=' text-2xl lg:text-2xl'>My Profile</h1>
+        <div className='mt-10 px-2 lg:px-5 bg-gray-200 rounded-md p-4'>
+            <h1 className=' text-2xl text-center'>My Profile</h1>
 
 
-            <div className='flex justify-center lg:justify-start px-5 mt-5'>
+            <div className='flex justify-center mt-5'>
                 <form onSubmit={handleUserProfile}>
                     <p><strong>Note:</strong> hey {user?.displayName} you can't change name and email.</p>
 
@@ -76,7 +81,7 @@ const MyProfile = () => {
                         <span className="label-text">Name</span>
                     </label>
 
-                    <input disabled value={user?.displayName} type="text" className="input input-bordered w-full max-w-xs" />
+                    <input disabled value={user?.displayName} type="text" className="input input-bordered w-full max-w-md" />
 
 
 
@@ -84,7 +89,7 @@ const MyProfile = () => {
                         <span className="label-text">Your Email</span>
                     </label>
 
-                    <input disabled value={user?.email} type="email" className="input input-bordered w-full max-w-xs" />
+                    <input disabled value={user?.email} type="email" className="input input-bordered w-full max-w-md" />
 
 
 
@@ -96,7 +101,7 @@ const MyProfile = () => {
                         <span className="label-text">Select your Education degree</span>
                     </label>
 
-                    <select onChange={() => setOnChange(true)} name='education' className="input input-bordered w-full max-w-xs">
+                    <select onChange={() => setOnChange(true)} name='education' className="input input-bordered w-full max-w-md">
 
 
                         <option value="JSC/JDC">JSC/JDC</option>
@@ -114,7 +119,7 @@ const MyProfile = () => {
                     </label>
 
 
-                    <select onChange={() => setOnChange(true)} name='institution' className="input input-bordered w-full max-w-xs">
+                    <select onChange={() => setOnChange(true)} name='institution' className="input input-bordered w-full max-w-md">
 
                         <option value="Abdul Kadir Mollah City College">Abdul Kadir Mollah City College</option>
                         <option value="Adamjee Cantonment College">Adamjee Cantonment College</option>
@@ -134,7 +139,7 @@ const MyProfile = () => {
                     </label>
 
 
-                    <select onChange={() => setOnChange(true)} name='country' className="input input-bordered w-full max-w-xs">
+                    <select onChange={() => setOnChange(true)} name='country' className="input input-bordered w-full max-w-md">
                         {
                             countries?.map(countrie => <option value={countrie?.name?.common}>{countrie?.name?.common}</option>)
                         }
@@ -143,12 +148,12 @@ const MyProfile = () => {
                     <label className="label">
                         <span className="label-text ">Street Address</span>
                     </label>
-                    <input onChange={() => setOnChange(true)} type='text' name='streetAddress' className="input input-bordered w-full max-w-xs" />
+                    <input onChange={() => setOnChange(true)} type='text' name='streetAddress' className="input input-bordered w-full max-w-md" />
 
                     <label className="label mt-4">
                         <span className="label-text text-2xl">phone number</span>
                     </label>
-                    <input onChange={() => setOnChange(true)} type='tel' name='phoneNumber' className="input input-bordered w-full max-w-xs" />
+                    <input onChange={() => setOnChange(true)} type='tel' name='phoneNumber' className="input input-bordered w-full max-w-md" />
 
                     <label className="label mt-4">
                         <span className="label-text text-2xl">External profile link</span>
@@ -156,11 +161,11 @@ const MyProfile = () => {
                     <label className="label ">
                         <span className="label-text">LinkedIn </span>
                     </label>
-                    <input onChange={() => setOnChange(true)} type='text' name='linkedIn' className="input input-bordered w-full max-w-xs" />
+                    <input onChange={() => setOnChange(true)} type='text' name='linkedIn' className="input input-bordered w-full max-w-md" />
                     <label className="label ">
                         <span className="label-text">Facebook</span>
                     </label>
-                    <input onChange={() => setOnChange(true)} type='text' name='facebook' className="input input-bordered w-full max-w-xs" />
+                    <input onChange={() => setOnChange(true)} type='text' name='facebook' className="input input-bordered w-full max-w-md" />
 
 
 
@@ -174,7 +179,7 @@ const MyProfile = () => {
 
                     <br />
 
-                    <input disabled={!onChange} type='submit' className='btn btn-active w-full max-w-xs' value='Update' />
+                    <input disabled={!onChange} type='submit' className='btn my-10 btn-active w-full max-w-md' value='Update' />
                 </form>
             </div>
 

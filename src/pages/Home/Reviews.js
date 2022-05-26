@@ -4,7 +4,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://stormy-castle-37919.herokuapp.com/reviews', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -16,7 +16,7 @@ const Reviews = () => {
 
     return (
 
-        <section className='mt-36 px-10'>
+        <section className='mt-36 px-4 md:px-10'>
             <div className=' text-center mb-10'>
                 <h2 className='text-2xl '>Reviews</h2>
                 <p>what client say?</p>

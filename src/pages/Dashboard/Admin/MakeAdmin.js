@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 
 const MakeAdmin = () => {
-    const { data: users, refetch } = useQuery('findAllUser', () => fetch('http://localhost:5000/users', {
+    const { data: users, refetch } = useQuery('findAllUser', () => fetch('https://stormy-castle-37919.herokuapp.com/users', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -11,7 +11,7 @@ const MakeAdmin = () => {
 
 
     const makeAdmin = (email) => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://stormy-castle-37919.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -32,10 +32,10 @@ const MakeAdmin = () => {
     }
 
     return (
-        <div>
-            <h1>Make Admin </h1>
+        <div className='mt-10 px-2 lg:px-5 bg-gray-200 rounded-md p-4'>
+            <h1 className='text-2xl text-center'>Make Admin </h1>
 
-            <div>
+            <div className='mt-5'>
                 <div class="overflow-x-auto">
                     <table class="table w-full">
                         <thead>
@@ -53,7 +53,7 @@ const MakeAdmin = () => {
                                     <th>{i + 1}</th>
                                     <td>{user.email}</td>
                                     <td>{user.admin ? 'Admin' : 'User'}</td>
-                                    <td>{!user.admin && <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
+                                    <td>{user.admin ? <span>Already Admin</span> : <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
                                 </tr>)
                             }
 

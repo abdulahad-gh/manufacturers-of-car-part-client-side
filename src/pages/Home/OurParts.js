@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const OurParts = () => {
     const [parts, setParts] = useState([]);
     useEffect(() => {
         (async () => {
-            const parts = await axios.get('http://localhost:5000/parts', {
+            const parts = await axios.get('https://stormy-castle-37919.herokuapp.com/parts', {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -17,9 +17,10 @@ const OurParts = () => {
 
     }, [])
     const navigate = useNavigate()
-    console.log(parts);
     return (
-        <section className='mt-40 px-2 lg:px-10'>
+        <section
+
+            className='mt-40 px-2 lg:px-10'>
             <h2 className='text-2xl text-center mb-10'>Our Parts</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                 {parts?.map(part => <div class="card lg:card-side bg-base-100 shadow-xl">

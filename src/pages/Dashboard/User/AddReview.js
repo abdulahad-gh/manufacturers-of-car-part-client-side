@@ -25,7 +25,7 @@ const AddReview = () => {
 
 
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://stormy-castle-37919.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -48,7 +48,7 @@ const AddReview = () => {
     }
 
     return (
-        <div className='mt-14 lg:mt-20'>
+        <div className='mt-10 px-2 lg:px-5 bg-gray-200 rounded-md p-4'>
             <h2 className='text-center text-2xl lg:text-2xl'>Add Review</h2>
 
             <div>
