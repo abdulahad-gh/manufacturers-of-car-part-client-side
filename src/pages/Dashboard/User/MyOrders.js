@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase-init';
+import Spinner from '../../Shared/Spinner';
 
 const MyOrders = () => {
+    const [spinner, setSpinner] = useState(true)
+
     const [user, loading] = useAuthState(auth)
 
     const { data: orders, isLoading, refetch } = useQuery(['orderFind', user.email], () => (fetch(`https://stormy-castle-37919.herokuapp.com/orders?email=${user.email}`, {
@@ -12,11 +16,14 @@ const MyOrders = () => {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    })).then(res => res.json()))
+    })).then(res => {
+        res.json()
+        setSpinner(false)
+    }))
 
 
-    if (loading || isLoading) {
-        return <p>loading....</p>
+    if (loading || isLoading || spinner) {
+        return <Spinner />
     }
 
     const handleDelete = (id, name) => {

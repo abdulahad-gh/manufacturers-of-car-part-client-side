@@ -17,11 +17,11 @@ const Dashboard = () => {
 
 
             </div>
-            <div className="drawer-side mt-20 lg:mt-20">
+            <div className="drawer-side mt-20  lg:mt-20">
                 <label for="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu lg:p-4 bg-gray-600 text-white text-sm overflow-y-auto w-40 lg:w-53 ">
                     {/* <!-- Sidebar content here --> */}
-                    <li><Link to='/dashboard'><i class="fa-solid fa-address-card"></i> My Profile </Link></li>
+                    <li><Link to='/dashboard'><i class="fa-solid fa-address-card text-black"></i> My Profile </Link></li>
                     {!admin ? <>
                         <li><Link to='/dashboard/myOrders'><i class="fa-solid fa-cart-shopping"></i>My Orders</Link></li>
                         <li><Link to='/dashboard/addReview'><i class="fa-solid fa-star"></i>Add A Review</Link></li>

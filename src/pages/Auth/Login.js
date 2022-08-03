@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase-init';
 import useToken from '../../Hooks/useToken';
+import PageTitle from '../Shared/PageTitle';
+import Spinner from '../Shared/Spinner';
 
 const Login = () => {
 
@@ -20,22 +23,25 @@ const Login = () => {
     const [token] = useToken(user || userGoogle)
     const navigate = useNavigate()
     const location = useLocation()
+    const [spinner, setSpinner] = useState(false)
     const from = location.state?.from?.pathname || '/';
     if (userAuth) {
+
         navigate(from, { replace: true });
 
     }
 
     useEffect(() => {
         if (token) {
+            setSpinner(false)
             navigate('/')
         }
 
     }, [token, navigate])
 
 
-    if (loading || loadingGoogle) {
-        return
+    if (loading || loadingGoogle || spinner) {
+        return <Spinner spinnerTitle='Login' />
     }
     let signInError
 
@@ -46,11 +52,16 @@ const Login = () => {
 
 
     const onSubmit = data => {
+        setSpinner(true)
         const { email, password } = data
         signInWithEmailAndPassword(email, password)
+        setSpinner(false)
+
     };
     return (
         <div className='flex justify-center items-center h-screen mt-10'>
+            <PageTitle title='Login' />
+
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-center text-xl">LogIn</h2>

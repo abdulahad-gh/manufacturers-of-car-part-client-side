@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase-init';
 import useToken from '../../Hooks/useToken';
+import PageTitle from '../Shared/PageTitle';
+import Spinner from '../Shared/Spinner';
 
 const Signup = () => {
 
@@ -20,6 +22,9 @@ const Signup = () => {
     //updateName. When user signUp email and password
     const [updateProfile, updating, errorUpdating] = useUpdateProfile(auth);
 
+    //spinner state
+    const [spinner, setSpinner] = useState(false);
+
     const [token] = useToken(user || userGoogle)
     const navigate = useNavigate()
 
@@ -30,8 +35,13 @@ const Signup = () => {
 
     }, [token, navigate])
 
-    if (loading || loadingGoogle || updating) {
-        return
+    if (loading || loadingGoogle || updating || spinner) {
+        if (spinner) {
+            return <Spinner spinnerTitle='creating account...' />
+        }
+        else {
+            return <Spinner />
+        }
     }
     let signInError;
     if (error || errorGoogle) {
@@ -41,6 +51,7 @@ const Signup = () => {
         console.log(errorUpdating);
     }
     const onSubmit = async data => {
+        setSpinner(true)
         const { name, email, password, confirmPassword } = data
         if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password)
@@ -50,10 +61,13 @@ const Signup = () => {
         else {
             alert("your password don't matched")
         }
+        setSpinner(false)
 
     };
     return (
         <div className='flex justify-center items-center h-screen mt-20  md:mt-10'>
+            <PageTitle title='SignUp' />
+
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-center text-xl">Sign Up</h2>

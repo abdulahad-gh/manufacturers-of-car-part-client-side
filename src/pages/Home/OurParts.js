@@ -20,11 +20,11 @@ const OurParts = () => {
     return (
         <section
 
-            className='mt-40 px-2 lg:px-10'>
+            className='mt-16 px-2 lg:px-10'>
             <h2 className='text-2xl text-center mb-10'>Our Parts</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                 {parts?.map(part => <div class="card lg:card-side bg-base-100 shadow-xl">
-                    <figure><img src={part.img} alt="Album" /></figure>
+                    <figure><img className='w[100%]' src={part.img} alt="Album" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">{part.part}</h2>
                         <p>{part.desc.slice(0, 50)}</p>

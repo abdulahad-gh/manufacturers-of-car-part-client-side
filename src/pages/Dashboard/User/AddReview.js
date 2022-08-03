@@ -62,7 +62,7 @@ const AddReview = () => {
 
                     </select>
                     <br />
-                    <textarea placeholder='enter your review description' className='w-full max-w-xs border resize-none' r name="reviewDesc" id="" cols="30" rows="10"></textarea>
+                    <textarea placeholder='enter your review description' className='w-full max-w-xs border resize-none p-2' r name="reviewDesc" id="" cols="30" rows="10"></textarea>
                     <br />
 
 

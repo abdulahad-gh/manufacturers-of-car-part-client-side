@@ -108,7 +108,7 @@ const CheckoutForm = ({ item }) => {
 
 
             setTimeout(() => {
-                navigate('/myOrders')
+                navigate('/dashboard/myOrders')
             }, 3000)
 
 

@@ -28,7 +28,7 @@ const Footer = () => {
             </footer>
             <footer class="footer px-3 md:px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
                 <div class="items-center justify-start flex flex-wrap">
-                    <img className='w-10 h-10 md:w-16 md:h-16 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9fAHBAZDOkAYBUlsgaXK6BPZVRWUfw-ByLQ&usqp=CAU" alt="" />
+                    <img className='w-6 h-6 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9fAHBAZDOkAYBUlsgaXK6BPZVRWUfw-ByLQ&usqp=CAU" alt="" />
                     <p>Manufacturers Of Car Part</p>
                 </div>
                 <div class="md:place-self-center md:justify-self-end">

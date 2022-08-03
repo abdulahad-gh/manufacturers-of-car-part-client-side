@@ -1,8 +1,11 @@
 import React from 'react';
+import PageTitle from './Shared/PageTitle';
 
 const Portfolio = () => {
     return (
         <div className='mt-20'>
+            <PageTitle title='Portfolio' />
+
 
             <section>
                 <div className='flex flex-col md:flex-row justify-evenly items-center'>
@@ -111,9 +114,9 @@ const Portfolio = () => {
                     <h2 className='text-3xl'>My projects links</h2>
 
                     <div>
-                        <p><a href="https://laptops-warehouse.netlify.app/" target='_blank'>Laptops-warehouse</a></p>
-                        <p><a href="https://reviews-space.netlify.app/" target='_blank'>Reviews-Space</a></p>
-                        <p><a href="https://phonetravel.netlify.app/" target='_blank'>Phone Travel</a></p>
+                        <p><a href="https://laptops-warehouse.netlify.app/" target='_blank' rel='noreferrer'>Laptops-warehouse</a></p>
+                        <p><a href="https://reviews-space.netlify.app/" target='_blank' rel='noreferrer'>Reviews-Space</a></p>
+                        <p><a href="https://phonetravel.netlify.app/" target='_blank' rel='noreferrer'>Phone Travel </a></p>
                     </div>
 
 
