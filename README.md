@@ -15,7 +15,7 @@ Server Site Link=> [Manufacturers With heroku](https://stormy-castle-37919.herok
 
 ## features and functionality for Admin
 * Add product and remove product
-* Make Admin
+* Make Admin normal users
 * Update Profile
 * Manage All orders
 * Manage Products
