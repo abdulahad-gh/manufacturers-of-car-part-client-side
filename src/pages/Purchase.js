@@ -16,7 +16,7 @@ const Purchase = () => {
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
         (async () => {
-            const part = await axios.get(`https://stormy-castle-37919.herokuapp.com/part/${id}`)
+            const part = await axios.get(`https://manufacturers-of-car-part-server-production.up.railway.app/part/${id}`)
             setPart(part.data)
         })()
 
@@ -52,7 +52,7 @@ const Purchase = () => {
             name: user.displayName || name,
             phone
         }
-        fetch('https://stormy-castle-37919.herokuapp.com/order', {
+        fetch('https://manufacturers-of-car-part-server-production.up.railway.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

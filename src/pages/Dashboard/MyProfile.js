@@ -43,7 +43,7 @@ const MyProfile = () => {
             facebook: e.target.facebook.value,
 
         }
-        fetch(`https://stormy-castle-37919.herokuapp.com/update-user-info/${user.email}`, {
+        fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/update-user-info/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

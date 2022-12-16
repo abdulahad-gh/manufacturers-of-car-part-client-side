@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { toast } from 'react-toastify';
 
 const ManageAllOrders = () => {
-    const { data: allOrders, isLoading, refetch } = useQuery('getAllOrders', () => fetch('https://stormy-castle-37919.herokuapp.com/all-orders', {
+    const { data: allOrders, isLoading, refetch } = useQuery('getAllOrders', () => fetch('https://manufacturers-of-car-part-server-production.up.railway.app/all-orders', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -15,7 +15,7 @@ const ManageAllOrders = () => {
         return
     }
     const handlePendingStatus = id => {
-        fetch(`https://stormy-castle-37919.herokuapp.com/pending-status-change/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/pending-status-change/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const ManageAllOrders = () => {
     const handleDelete = (id, name) => {
 
 
-        fetch(`https://stormy-castle-37919.herokuapp.com/order/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
