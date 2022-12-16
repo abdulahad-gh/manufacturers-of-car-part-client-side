@@ -6,7 +6,7 @@ const OurParts = () => {
     const [parts, setParts] = useState([]);
     useEffect(() => {
         (async () => {
-            const parts = await axios.get('https://stormy-castle-37919.herokuapp.com/parts', {
+            const parts = await axios.get('https://manufacturers-of-car-part-server-production.up.railway.app/parts', {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
