@@ -25,7 +25,7 @@ const AddReview = () => {
 
 
 
-        fetch('https://stormy-castle-37919.herokuapp.com/review', {
+        fetch('https://manufacturers-of-car-part-server-production.up.railway.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
