@@ -13,7 +13,7 @@ const CheckoutForm = ({ item }) => {
     const [proccessing, setProccessing] = useState(false)
     const navigate = useNavigate()
     useEffect(() => {
-        fetch('https://manufacturers-of-car-part-server-production.up.railway.app/create-payment-intent', {
+        fetch('https://manufacturers-of-car-part-server.up.railway.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -91,7 +91,7 @@ const CheckoutForm = ({ item }) => {
                 email
             }
 
-            fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/order/${_id}`, {
+            fetch(`https://manufacturers-of-car-part-server.up.railway.app/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

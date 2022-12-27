@@ -25,7 +25,7 @@ const AddReview = () => {
 
 
 
-        fetch('https://manufacturers-of-car-part-server-production.up.railway.app/review', {
+        fetch('https://manufacturers-of-car-part-server.up.railway.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

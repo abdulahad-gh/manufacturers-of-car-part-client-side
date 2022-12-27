@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     const [user, loading] = useAuthState(auth)
 
-    const { data: orders, isLoading, refetch } = useQuery(['orderFind', user.email], () => (fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/orders?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery(['orderFind', user.email], () => (fetch(`https://manufacturers-of-car-part-server.up.railway.app/orders?email=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ const MyOrders = () => {
     const handleDelete = (id, name) => {
 
 
-        fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/order/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server.up.railway.app/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

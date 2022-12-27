@@ -4,14 +4,14 @@ import { toast } from 'react-toastify';
 import Spinner from '../../Shared/Spinner';
 
 const ManageProducts = () => {
-    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://manufacturers-of-car-part-server-production.up.railway.app/parts', {
+    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://manufacturers-of-car-part-server.up.railway.app/parts', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
 
     const handleDelete = (id, name) => {
-        fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/product/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server.up.railway.app/product/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -6,7 +6,7 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://manufacturers-of-car-part-server-production.up.railway.app/admin/${email}`)
+            fetch(`https://manufacturers-of-car-part-server.up.railway.app/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setAdmin(data.admin);

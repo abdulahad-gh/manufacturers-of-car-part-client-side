@@ -6,7 +6,7 @@ const Reviews = () => {
 
     useEffect(() => {
 
-        fetch('https://manufacturers-of-car-part-server-production.up.railway.app/reviews', {
+        fetch('https://manufacturers-of-car-part-server.up.railway.app/reviews', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`,

@@ -38,7 +38,7 @@ const AddProduct = () => {
                     }
 
                     // post req to server for save part collection of database 
-                    fetch('https://manufacturers-of-car-part-server-production.up.railway.app/add-product', {
+                    fetch('https://manufacturers-of-car-part-server.up.railway.app/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
