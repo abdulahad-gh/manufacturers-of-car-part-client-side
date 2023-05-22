@@ -13,7 +13,7 @@ const stripePromise = loadStripe('pk_test_51L19j3JpfOx2cnrFLrjt9NZmex6eVQr73f3wZ
 const Payment = () => {
     const [user, loading] = useAuthState(auth)
     const { orderId } = useParams()
-    const { data: item, isLoading } = useQuery('orderFind', () => (fetch(`https://manufacturers-of-car-part-server.up.railway.app/order/${orderId}`, {
+    const { data: item, isLoading } = useQuery('orderFind', () => (fetch(`https://manufacturers-of-car-part-server.vercel.app/order/${orderId}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

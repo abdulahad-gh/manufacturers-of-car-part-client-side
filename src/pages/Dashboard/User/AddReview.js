@@ -16,6 +16,7 @@ const AddReview = () => {
         e.preventDefault()
 
         const reviewContent = {
+            ownerImg:user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzri5HzFJVMDMZH42QE8koVyDJOesYg5QUQg&usqp=CAU',
             reviewOwner: user?.displayName || 'Name Not Available',
             rating: e.target.reviewNumber.value,
             reviewDesc: e.target.reviewDesc.value
@@ -25,7 +26,7 @@ const AddReview = () => {
 
 
 
-        fetch('https://manufacturers-of-car-part-server.up.railway.app/review', {
+        fetch('https://manufacturers-of-car-part-server.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -36,6 +37,7 @@ const AddReview = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.acknowledged) {
                     toast.success('Review add success')
                 }

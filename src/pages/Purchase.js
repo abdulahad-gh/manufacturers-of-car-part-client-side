@@ -16,7 +16,7 @@ const Purchase = () => {
     const [quantityError, setQuantityError] = useState('');
     useEffect(() => {
         (async () => {
-            const part = await axios.get(`https://manufacturers-of-car-part-server.up.railway.app/part/${id}`)
+            const part = await axios.get(`https://manufacturers-of-car-part-server.vercel.app/part/${id}`)
             setPart(part.data)
         })()
 
@@ -52,7 +52,7 @@ const Purchase = () => {
             name: user.displayName || name,
             phone
         }
-        fetch('https://manufacturers-of-car-part-server.up.railway.app/order', {
+        fetch('https://manufacturers-of-car-part-server.vercel.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
