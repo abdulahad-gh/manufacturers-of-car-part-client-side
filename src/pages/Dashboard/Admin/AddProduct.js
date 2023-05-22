@@ -38,7 +38,7 @@ const AddProduct = () => {
                     }
 
                     // post req to server for save part collection of database 
-                    fetch('https://manufacturers-of-car-part-server.vercel.app/add-product', {
+                    fetch('https://manufacturers-of-car-part-server-huce.vercel.app/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

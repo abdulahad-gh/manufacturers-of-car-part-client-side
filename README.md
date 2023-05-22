@@ -3,7 +3,7 @@
 
 Live Site Link=> [Manufacturers Of Car Part](https://manufacturers-of-car-part.firebaseapp.com/).
  
-Server Site Link=> [Manufacturers With heroku](https://manufacturers-of-car-part-server.vercel.app/).
+Server Site Link=> [Manufacturers With heroku](https://manufacturers-of-car-part-server-huce.vercel.app/).
 
 ## features and functionality for User
 

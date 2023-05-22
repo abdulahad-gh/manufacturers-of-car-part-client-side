@@ -6,7 +6,7 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://manufacturers-of-car-part-server.vercel.app/admin/${email}`)
+            fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setAdmin(data.admin);

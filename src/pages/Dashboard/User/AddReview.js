@@ -26,7 +26,7 @@ const AddReview = () => {
 
 
 
-        fetch('https://manufacturers-of-car-part-server.vercel.app/review', {
+        fetch('https://manufacturers-of-car-part-server-huce.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

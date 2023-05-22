@@ -4,14 +4,14 @@ import { toast } from 'react-toastify';
 import Spinner from '../../Shared/Spinner';
 
 const ManageProducts = () => {
-    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://manufacturers-of-car-part-server.vercel.app/parts', {
+    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://manufacturers-of-car-part-server-huce.vercel.app/parts', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
 
     const handleDelete = (id, name) => {
-        fetch(`https://manufacturers-of-car-part-server.vercel.app/product/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/product/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

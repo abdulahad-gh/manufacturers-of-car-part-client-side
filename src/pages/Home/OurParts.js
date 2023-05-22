@@ -6,7 +6,7 @@ const OurParts = () => {
     const [parts, setParts] = useState([]);
     useEffect(() => {
         (async () => {
-            const parts = await axios.get('https://manufacturers-of-car-part-server.vercel.app/parts', {
+            const parts = await axios.get('https://manufacturers-of-car-part-server-huce.vercel.app/parts', {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }

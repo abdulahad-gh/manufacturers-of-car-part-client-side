@@ -43,7 +43,7 @@ const MyProfile = () => {
             facebook: e.target.facebook.value,
 
         }
-        fetch(`https://manufacturers-of-car-part-server.vercel.app/update-user-info/${user.email}`, {
+        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/update-user-info/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

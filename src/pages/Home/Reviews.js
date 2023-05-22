@@ -8,7 +8,7 @@ const Reviews = () => {
 const [user] = useAuthState(auth)
     useEffect(() => {
 
-        fetch('https://manufacturers-of-car-part-server.vercel.app/reviews', {
+        fetch('https://manufacturers-of-car-part-server-huce.vercel.app/reviews', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`,

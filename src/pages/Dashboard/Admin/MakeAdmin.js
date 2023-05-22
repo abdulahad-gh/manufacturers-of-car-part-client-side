@@ -7,14 +7,14 @@ import Spinner from '../../Shared/Spinner';
 const MakeAdmin = () => {
     const [loading, setLoading] = useState(true)
 
-    const { data: users, refetch } = useQuery('findAllUser', () => fetch('https://manufacturers-of-car-part-server.vercel.app/users', {
+    const { data: users, refetch } = useQuery('findAllUser', () => fetch('https://manufacturers-of-car-part-server-huce.vercel.app/users', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
     const makeAdmin = (email) => {
         setLoading(true)
-        fetch(`https://manufacturers-of-car-part-server.vercel.app/user/admin/${email}`, {
+        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
