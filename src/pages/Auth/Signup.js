@@ -10,6 +10,7 @@ import Spinner from '../Shared/Spinner';
 const Signup = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate()
     const [
         createUserWithEmailAndPassword,
         user
@@ -21,13 +22,11 @@ const Signup = () => {
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
     //updateName. When user signUp email and password
     const [updateProfile, updating, errorUpdating] = useUpdateProfile(auth);
-
-    //spinner state
-    const [spinner, setSpinner] = useState(false);
-
     const [token] = useToken(user || userGoogle)
-    const navigate = useNavigate()
-
+    const [spinner, setSpinner] = useState(false);
+    
+    //spinner state
+    let signupError;
     useEffect(() => {
         if (token) {
             navigate('/')
@@ -35,17 +34,10 @@ const Signup = () => {
 
     }, [token, navigate])
 
-    if (loading || loadingGoogle || updating || spinner) {
-        if (spinner) {
+    if (loading || loadingGoogle || updating ) {
+
             return <Spinner spinnerTitle='creating account...' />
-        }
-        else {
-            return <Spinner />
-        }
-    }
-    let signInError;
-    if (error || errorGoogle) {
-        signInError = <p className='text-red-500'>{error?.message || errorGoogle?.message}</p>
+      
     }
     if (errorUpdating) {
         console.log(errorUpdating);
@@ -55,7 +47,12 @@ const Signup = () => {
         const { name, email, password, confirmPassword } = data
         if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password)
-            await updateProfile({ displayName: name })
+            
+           if(name){
+            await updateProfile({ displayName: name  })
+        setSpinner(false)
+
+           }
 
         }
         else {
@@ -64,6 +61,11 @@ const Signup = () => {
         setSpinner(false)
 
     };
+    if (error || errorGoogle) {
+        signupError =  <p className='text-red-500'>{error?.message || errorGoogle?.message}</p>
+   }
+
+   console.log(user)
     return (
         <div className='flex justify-center items-center h-screen mt-20  md:mt-10'>
             <PageTitle title='SignUp' />
@@ -153,7 +155,7 @@ const Signup = () => {
 
 
 
-                        {signInError}
+                        {signupError}
                         <input type='submit' className='btn btn-primary w-full mt-5' value='Sign Up' />
                     </form>
                     <p className='text-center'><small>already have an account? <Link className='text-primary ' to='/login'>LogIn</Link></small></p>

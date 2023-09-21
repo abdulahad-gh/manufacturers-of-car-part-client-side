@@ -6,7 +6,7 @@ import Spinner from '../../Shared/Spinner';
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [spinner, setSpinner] = useState(false);
-    const imageStorageKeyImgbb = '4908b6d81e75a6e7fe3061d6a1ab2068';
+    const imageStorageKeyImgbb = process.env.REACT_APP_IMG_KEY;
 
     if (spinner) {
         return <Spinner />
@@ -15,9 +15,9 @@ const AddProduct = () => {
     const onSubmit = async data => {
         setSpinner(true)
         const { part, desc, price, availableQuan, minQuan, img } = data
-        const productImage = img[0];
         const formData = new FormData();
-        formData.append('image', productImage);
+        console.log(img)
+        formData.append('image', img[0]);
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKeyImgbb}`;
         fetch(url, {
             method: 'POST',
@@ -25,6 +25,7 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(result => {
+                console.log(result)
                 if (result.success) {
                     const img = result.data.url;
                     const product = {
@@ -38,7 +39,7 @@ const AddProduct = () => {
                     }
 
                     // post req to server for save part collection of database 
-                    fetch('https://manufacturers-of-car-part-server-huce.vercel.app/add-product', {
+                    fetch('https://fair-gold-bull-tam.cyclic.app/parts/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -47,17 +48,20 @@ const AddProduct = () => {
                         body: JSON.stringify(product)
                     })
                         .then(res => res.json())
-                        .then(inserted => {
-                            if (inserted.insertedId) {
+                        .then(res => {
+                            setSpinner(false)
+                            if (res.status) {
                                 toast.success('product added successfully')
                                 reset();
-                                setSpinner(false)
                             }
                             else {
                                 toast.error('Failed to add the product');
                             }
                         })
 
+                }else{
+                    setSpinner(false)
+                    toast.error('your image cannot uploaded!!')
                 }
 
             })

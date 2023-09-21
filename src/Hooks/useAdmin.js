@@ -6,16 +6,24 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/admin/${email}`)
+            fetch(`https://fair-gold-bull-tam.cyclic.app/user/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    setAdmin(data.admin);
-                    setLoadAdmin(false);
+                     
+                    if(data.status){
+                        setAdmin(true);
+                        setLoadAdmin(false)
+                    }
+                    else{
+                        setAdmin(false)
+                        setLoadAdmin(false)
+                    }
+                    // setLoadAdmin(false);
                 })
         }
     }, [user])
 
-    return [admin, loadAdmin]
+    return [admin,loadAdmin]
 }
 
 export default useAdmin;

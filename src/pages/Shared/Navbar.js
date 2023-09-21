@@ -9,7 +9,6 @@ const Navbar = ({ children }) => {
     const [user] = useAuthState(auth)
     const { pathname } = useLocation()
     const [theme, setTheme] = useState(false)
-    console.log(localStorage.dark);
 
     useEffect(() => {
         if (theme) {

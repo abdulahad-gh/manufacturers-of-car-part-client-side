@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { toast } from 'react-toastify';
 
 const ManageAllOrders = () => {
-    const { data: allOrders, isLoading, refetch } = useQuery('getAllOrders', () => fetch('https://manufacturers-of-car-part-server-huce.vercel.app/all-orders', {
+    const { data: allOrders, isLoading, refetch } = useQuery('getAllOrders', () => fetch('https://fair-gold-bull-tam.cyclic.app/order/all', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -15,7 +15,7 @@ const ManageAllOrders = () => {
         return
     }
     const handlePendingStatus = id => {
-        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/pending-status-change/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server-side-git-main-abdulahad-gh.vercel.app/pending-status-change/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const ManageAllOrders = () => {
     const handleDelete = (id, name) => {
 
 
-        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/order/${id}`, {
+        fetch(`https://manufacturers-of-car-part-server-side-git-main-abdulahad-gh.vercel.app/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -68,7 +68,7 @@ const ManageAllOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {allOrders?.map((order, i) => <>
+                        {allOrders?.data?.map((order, i) => <>
                             <tr key={i}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">

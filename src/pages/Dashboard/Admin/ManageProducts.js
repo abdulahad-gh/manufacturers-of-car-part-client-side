@@ -4,14 +4,15 @@ import { toast } from 'react-toastify';
 import Spinner from '../../Shared/Spinner';
 
 const ManageProducts = () => {
-    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://manufacturers-of-car-part-server-huce.vercel.app/parts', {
+    const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://fair-gold-bull-tam.cyclic.app/parts', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
 
-    const handleDelete = (id, name) => {
-        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/product/${id}`, {
+    const handleDelete = ({_id,part}) => {
+        console.log(_id,part);
+        fetch(`https://fair-gold-bull-tam.cyclic.app/parts/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -20,7 +21,7 @@ const ManageProducts = () => {
             .then(res => res.json())
             .then(data => {
                 refetch()
-                toast.success(`successfully product  ${name} is deleted`)
+                toast.success(`successfully product  ${part} is deleted`)
             })
     }
     if (isLoading) {
@@ -44,14 +45,16 @@ const ManageProducts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products?.map((product, i) => <tr key={i}>
+                        {products?.data.map((product, i) => 
+                        (
+                            <tr key={product._id}>
                             <th>{i + 1}</th>
                             <td><div className="avatar">
                                 <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                     <img src={product.img} alt={product.part} />
                                 </div>
                             </div></td>
-                            <td>{product.part}{product._id}</td>
+                            <td>{product.part + product._id}</td>
                             <td>{product.price}</td>
                             <td>
                                 <label for="remove-product" className="btn  btn-xs btn-error">Delete</label>
@@ -63,7 +66,7 @@ const ManageProducts = () => {
                                             {product.part}</span> product</h3>
                                         <p className="py-4">remember! if you delete. after you again add It </p>
                                         <div className="modal-action">
-                                            <label onClick={() => handleDelete(product._id, product.part)} for="remove-product" className="btn btn-xs btn-error">Delete</label>
+                                            <label onClick={() => handleDelete(product)} for="remove-product" className="btn btn-xs btn-error">Delete</label>
                                             <label for="remove-product" className="btn btn-xs btn-info">Cancel</label>
                                         </div>
                                     </div>
@@ -72,6 +75,7 @@ const ManageProducts = () => {
 
 
                         </tr>
+                        )
 
 
                         )

@@ -21,6 +21,7 @@ import Portfolio from "./pages/Portfolio";
 import PageNotFound from "./pages/PageNotFound";
 import ManageAllOrders from "./pages/Dashboard/Admin/ManageAllOrders";
 import ManageProducts from "./pages/Dashboard/Admin/ManageProducts";
+import AllParts from "./pages/Home/AllParts";
 
 
 
@@ -30,20 +31,21 @@ function App() {
       <Navbar >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="dashboard" element={<RequireAuth>< Dashboard /> </RequireAuth>}>
+          <Route path="dashboard" element={ <RequireAuth> < Dashboard />   </RequireAuth>  }>
             <Route index element={<MyProfile />}></Route>
             <Route path="myOrders" element={<RequireUser><MyOrders /></RequireUser>}></Route>
             <Route path="payment/:orderId" element={<Payment />}></Route>
             <Route path="addReview" element={<RequireUser><AddReview /></RequireUser>}></Route>
-            <Route path="manageAllOrders" element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
-            <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
-            <Route path="addProduct" element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
-            <Route path="manageProducts" element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+            <Route path="manageAllOrders" element={<ManageAllOrders />}></Route>
+            <Route path="makeAdmin" element={<RequireUser> <MakeAdmin /></RequireUser>}></Route>
+            <Route path="addProduct" element={<RequireUser> <RequireAdmin>   <AddProduct />   </RequireAdmin>  </RequireUser> }></Route>
+            <Route path="manageProducts" element={ <RequireUser> <ManageProducts /> </RequireUser> }></Route>
           </Route>
-          <Route path="purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
+          <Route path="purchase/:id" element={<RequireUser><Purchase /> </RequireUser> } />
           <Route path="blogs" element={<Blogs />} />
           <Route path="myPortfolio" element={<Portfolio />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="all-parts" element={<AllParts/>}/>
           <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

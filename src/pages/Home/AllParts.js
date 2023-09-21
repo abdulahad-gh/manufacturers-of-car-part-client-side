@@ -1,27 +1,43 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import {  useNavigate } from 'react-router-dom';
 import Spinner from '../Shared/Spinner';
 
-const OurParts = () => {
-    console.log('hiii from our parts')
+const AllParts = () =>{
     const [parts, setParts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
+
+    useEffect(()=>{
+
+        (async()=>{
+            const data = await fetch('https://fair-gold-bull-tam.cyclic.app/parts',{
+                method:'GET',
+                headers:{
+                    'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+
+            const res = await data.json()
+            console.log(res);
+        })()
+
+    },[])
     
     useEffect(() => {
         (async () => {
-            const parts = await axios.get('https://fair-gold-bull-tam.cyclic.app/parts', {
+            const partsData = await axios.get('https://fair-gold-bull-tam.cyclic.app/parts', {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                 }
             })
             setLoading(false)
-            setParts(parts.data.payload)
+            setParts(partsData.data.payload)
         })()
         
         
     }, [])
+    console.log(parts,'____');
     
     if(!parts || loading ){
         return <Spinner/>
@@ -31,10 +47,10 @@ const OurParts = () => {
         <section
 
             className='mt-16 px-2 lg:px-10'>
-            <h2 className='text-2xl text-center mb-10'>Our Parts</h2>
+            <h2 className='text-2xl text-center mb-10'>Our all   Parts</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                 {parts?.map(part => <div class="card lg:card-side bg-base-100 shadow-xl">
-                    <figure className='w-[300px] h-[300px]'><img className='w-full h-full object-cover' src={part?.img} alt="Album" /></figure>
+                <figure className='w-[300px] h-[300px]'><img className='w-full h-full object-cover ' src={part?.img} alt="Album" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">{part?.part}</h2>
                         <p>{part?.desc?.slice(0, 50)}</p>
@@ -47,11 +63,10 @@ const OurParts = () => {
                     </div>
                 </div>
 
-                ).reverse().slice(0, 4)}
+                )}
             </div>
-<button className='btn btn-primary btn-sm mx-auto block mt-8' onClick={()=> navigate('/all-parts') } >Show all parts</button>
         </section>
-    );
-};
+    )
+}
 
-export default OurParts;
+export default AllParts;

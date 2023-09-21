@@ -7,37 +7,40 @@ import Spinner from '../../Shared/Spinner';
 const MakeAdmin = () => {
     const [loading, setLoading] = useState(true)
 
-    const { data: users, refetch } = useQuery('findAllUser', () => fetch('https://manufacturers-of-car-part-server-huce.vercel.app/users', {
+    const { data, refetch ,isLoading,isError} = useQuery('findAllUser', () => fetch('https://fair-gold-bull-tam.cyclic.app/user/all', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }).then(res => res.json()))
+    }).then(res => {
+        setLoading(false)
+        return res.json()
+    }))
+
     const makeAdmin = (email) => {
         setLoading(true)
-        fetch(`https://manufacturers-of-car-part-server-huce.vercel.app/user/admin/${email}`, {
-            method: 'PUT',
+        fetch(`https://fair-gold-bull-tam.cyclic.app/user/admin/${email}`, {
+            method: 'PATCH',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => {
-                if (res.status === 403) {
-                    setLoading(false)
-                    toast.error('Failed to Make an admin');
-                }
-                return res.json()
-            })
+            .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                console.log(data);
+                if (data.status) {
                     refetch()
                     setLoading(false)
                     toast.success('successfully make an admin')
                 }
             })
     }
-    if (loading) {
-        return <Spinner />
-    }
+ 
+    if(loading || isLoading){
+        return <Spinner  spinnerTitle='make admin' />
+       }
+       if(isError){
+        console.log(isError)
+       }
     return (
         <div className='mt-10 px-2 lg:px-5 bg-gray-200 rounded-md p-4'>
             <h1 className='text-2xl text-center'>Make Admin </h1>
@@ -56,11 +59,11 @@ const MakeAdmin = () => {
                         <tbody>
 
                             {
-                                users?.map((user, i) => <tr key={i}>
+                                data.data?.map((user, i) => <tr key={i}>
                                     <th>{i + 1}</th>
                                     <td>{user.email}</td>
-                                    <td>{user.admin ? 'Admin' : 'User'}</td>
-                                    <td>{user.admin ? <i class="fa-solid fa-circle-check"></i> : <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
+                                    <td>{user.role ==='admin' ? 'admin' : 'user'}</td>
+                                    <td>{user.role === 'admin' ? <i class="fa-solid fa-circle-check">already admin</i> : <button onClick={() => makeAdmin(user.email)} className="btn btn-xs">Make Admin</button>}</td>
                                 </tr>)
                             }
 

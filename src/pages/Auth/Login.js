@@ -37,7 +37,7 @@ const Login = () => {
             navigate('/')
         }
 
-    }, [token, navigate])
+    }, [token])
 
 
     if (loading || loadingGoogle || spinner) {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../firebase-init';
 
@@ -14,14 +14,18 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [quantity, setQuantity] = useState('');
     const [quantityError, setQuantityError] = useState('');
+
     useEffect(() => {
         (async () => {
-            const part = await axios.get(`https://manufacturers-of-car-part-server-huce.vercel.app/part/${id}`)
-            setPart(part.data)
+            const part = await axios.get(`https://fair-gold-bull-tam.cyclic.app/parts/${id}`)
+            console.log(part);
+            setPart(part.data.payload[0])
         })()
 
 
     }, [id])
+    
+   
 
 
     const handleQuantity = e => {
@@ -52,7 +56,7 @@ const Purchase = () => {
             name: user.displayName || name,
             phone
         }
-        fetch('https://manufacturers-of-car-part-server-huce.vercel.app/order', {
+        fetch('https://fair-gold-bull-tam.cyclic.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,11 +66,13 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
-                    toast.success('successfully added orders list')
+                if (!data.status) {
+                    toast.error('already exists order')
+
                 }
                 else {
-                    toast.error('already exists order')
+                    toast.success('successfully added orders list')
+
                 }
                 reset()
             });
@@ -81,7 +87,7 @@ const Purchase = () => {
 
                 <div class="card lg:max-w-lg bg-base-100 shadow-xl">
                     <figure class="px-10 pt-10">
-                        <img src={img} alt="Shoes" class="rounded-xl" />
+                        <img src={img} alt={partName} class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center">
                         <h2 class="card-title">{partName}</h2>
